@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navView">
+
+    <group
+        android:id="@+id/group1">
+        <item
+            android:id="@+id/item1"
+            android:icon="@drawable/home"
+            android:title="@string/title_1" />
+        <item
+            android:id="@+id/item2"
+            android:icon="@drawable/timeline_sheet"
+            android:title="@string/title_2" />
+        <item
+            android:id="@+id/item3"
+            android:icon="@drawable/stopwatch"
+            android:title="@string/title_3" />
+    </group>
+
+    <group
+        android:id="@+id/group2">
+        <item
+            android:id="@+id/item4"
+            android:icon="@drawable/project"
+            android:title="@string/title_4">
+        </item>
+    </group>
+    <group
+        android:id="@+id/group3">
+        <item
+            android:id="@+id/item5"
+            android:icon="@drawable/report"
+            android:title="@string/title_5" />
+        <item
+            android:id="@+id/item6"
+            android:icon="@drawable/pomodoro"
+            android:title="@string/title_6" />
+        <item
+            android:id="@+id/item7"
+            android:icon="@drawable/baseline_settings_24"
+            android:title="Settings"/>
+        <item
+            android:id="@+id/item8"
+            android:icon="@drawable/calendar"
+            android:title="Calendar"/>
+        <item
+            android:id="@+id/item9"
+            android:icon="@drawable/badge"
+            android:title="@string/title_9"/>
+    </group>
+    <group android:id="@+id/group4">
+        <item
+            android:id="@+id/item10"
+            android:icon="@drawable/logout"
+            android:title="@string/title_7" />
+    </group>
+</menu>

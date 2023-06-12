@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Chronos</string>
+    <string name="forgotPassword"><a href="https://www.google.org">Forgot password?</a></string>
+    <string name="signUp"><u>Don\'t have an account yet? Sign-up here</u></string>
+    <string name="signIn"><u>Already have an account? Sign-in here</u></string>
+    <string name="TCS"><a href="@layout/sign_up">Terms of Use</a></string>
+
+    <string-array name="weekdays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <string-array name="dateFormats">
+        <item>DD/MM/YYYY</item>
+        <item>DD-MM-YYYY</item>
+        <item>MM/DD/YYYY</item>
+        <item>MM-DD-YYYY</item>
+        <item>YYYY-MM-DD</item>
+        <item>DD.MM.YYYY</item>
+    </string-array>
+
+    <string-array name="colours">
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Gold</item>
+        <item>Yellow</item>
+        <item>LightGreen</item>
+        <item>DarkGreen</item>
+        <item>Teal</item>
+        <item>LightBlue</item>
+        <item>DarkBlue</item>
+        <item>Indigo</item>
+        <item>Violet</item>
+        <item>Pink</item>
+        <item>Brown</item>
+        <item>Gray</item>
+    </string-array>
+
+    <string-array name="priority">
+        <item>Very High</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+        <item>Very Low</item>
+    </string-array>
+
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
+
+    <string name="open">Open</string>
+    <string name="timeEntry">Project X</string>
+    <string name="close">Close</string>
+    <string name="Submit">Submit</string>
+
+    <string name="timesheet_starter">Add timesheet entry</string>
+
+
+    <string name="cover">Cover</string>
+    <string name="title_place">Title Place Holder</string>
+    <string name="timesheet_item">Start date</string>
+    <string name="timesheet_item1">End Date</string>
+    <string name="timesheet_item2">Description</string>
+    <string name="timesheet_item3">minimum daily goal</string>
+    <string name="timesheet_item4">maximum daily goal</string>
+    <string name="timesheet_item6">Add picture</string>
+    <string name="timesheet_item5">Save</string>
+
+    <string name="title_1">Home</string>
+    <string name="title_2">Time sheet Entries</string>
+    <string name="title_3">Stopwatch</string>
+    <string name="title_4">Project</string>
+    <string name="title_5">Report</string>
+    <string name="title_6">Pomodoro</string>
+    <string name="title_8">Setting</string>
+    <string name="title_7">Logout</string>
+    <string name="title_9">Leader board</string>
+
+    <string name="ranking_1">1</string>
+    <string name="ranking_2">2</string>
+    <string name="ranking_3">3</string>
+    <string name="ranking_4">4</string>
+    <string name="ranking_5">5</string>
+</resources>

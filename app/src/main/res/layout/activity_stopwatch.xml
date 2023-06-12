@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Stopwatch"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/dark_purple">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stopwatch"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/light_purple"
+            android:layout_marginTop="100dp"
+            android:textSize="100sp"
+            android:layout_gravity="center"
+            android:text="00:00.00"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="230dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="Start"
+            android:drawableLeft="@drawable/play_watch"
+            android:textColor="@color/white"
+            android:layout_marginTop="1dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/btnPlaywatch"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+
+            />
+
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="Pause"
+            android:textColor="@color/white"
+            android:layout_marginTop="1dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/btnPauseWatch"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:drawableLeft="@drawable/pause_watch"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="reset"
+            android:textColor="@color/white"
+            android:layout_marginTop="1dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/btnResetwatch"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:drawableLeft="@drawable/reset_watch"
+
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:id="@+id/fl_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/custom_col"
+
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/nav_menu"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

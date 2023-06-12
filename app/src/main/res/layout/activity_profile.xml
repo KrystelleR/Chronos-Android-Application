@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@color/dark_purple"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/dark_purple"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="387dp"
+                android:backgroundTint="@color/dark_purple"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="375dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Settings"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/proflielbl"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/button_bg"
+                        android:text="Profile"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="270dp"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            android:layout_height="250dp"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="167dp"
+
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Email-Address"
+                                    android:textColor="@color/blue_purple"
+                                    android:textColorHint="@color/min_blue"
+                                    android:textSize="13dp" />
+
+                                <TextView
+                                    android:id="@+id/emailtxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:background="@null"
+                                    android:inputType="textEmailAddress"
+                                    android:text="Johnny12@xmail.com"
+                                    android:textColor="@color/white"
+                                    android:textSize="13dp" />
+
+                                <TextView
+                                    android:id="@+id/textView14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mobile Number"
+                                    android:textColor="@color/blue_purple"
+                                    android:textSize="13dp" />
+
+                                <EditText
+                                    android:id="@+id/mobiletxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:background="@null"
+                                    android:inputType="phone"
+                                    android:text="+27 12 345 6789"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/min_blue"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/textView16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Company"
+                                    android:textColor="@color/blue_purple"
+                                    android:textSize="13dp" />
+
+                                <EditText
+                                    android:id="@+id/companytxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:background="@null"
+                                    android:inputType="textPersonName"
+                                    android:text="Wendys Webdev"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="@color/min_blue"
+                                    android:textSize="15dp" />
+
+                                <Button
+                                    android:id="@+id/button5"
+                                    android:layout_width="150dp"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/blue_purple"
+                                    android:text="Change Password"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:backgroundTint="@android:color/transparent"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:orientation="vertical">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="130dp"
+                                    android:layout_height="130dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="12dp"
+                                    app:cardBackgroundColor="@color/white"
+                                    app:cardCornerRadius="250dp">
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="125dp"
+                                        android:layout_height="125dp"
+                                        android:layout_gravity="center"
+                                        app:cardCornerRadius="250dp">
+
+                                        <ImageView
+                                            android:id="@+id/profileimg"
+                                            android:layout_width="125dp"
+                                            android:layout_height="125dp"
+                                            android:scaleType="centerCrop"
+                                            android:src="@drawable/avatar" />
+
+                                    </androidx.cardview.widget.CardView>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/textView11"
+                                            android:layout_width="70dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:background="@null"
+                                            android:text="Name"
+                                            android:textColor="@color/blue_purple"
+                                            android:textSize="13dp" />
+
+                                        <EditText
+                                            android:id="@+id/nametxt"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:background="@null"
+                                            android:inputType="textPersonName"
+                                            android:text="Krystelle"
+                                            android:textColor="@color/white"
+                                            android:textColorHint="@color/min_blue"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/textView10"
+                                            android:layout_width="70dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:background="@null"
+                                            android:text="Surname"
+                                            android:textColor="@color/blue_purple"
+                                            android:textSize="13dp" />
+
+                                        <EditText
+                                            android:id="@+id/surnametxt"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:background="@null"
+                                            android:inputType="textPersonName"
+                                            android:text="Rupnarain"
+                                            android:textColor="@color/white"
+                                            android:textColorHint="@color/min_blue"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <Button
+                                    android:id="@+id/editProfilebtn"
+                                    android:layout_width="150dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:backgroundTint="@color/blue_purple"
+                                    android:text="Edit Picture"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="75dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textColor="@color/light_purple"
+                            android:textSize="17dp"
+                            android:text="Minimum Daily Goal" />
+
+                        <TextView
+                            android:id="@+id/mintxt"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="17dp"
+                            android:textColor="@color/black"
+                            android:textAlignment="center"
+                            android:background="@color/white"
+                            android:text="4" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textColor="@color/light_purple"
+                            android:textSize="17dp"
+                            android:text="Maximum Daily Goal" />
+
+                        <TextView
+                            android:id="@+id/maxtxt"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="17dp"
+                            android:textColor="@color/black"
+                            android:textAlignment="center"
+                            android:background="@color/white"
+                            android:layout_marginBottom="20dp"
+                            android:text="8" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:background="#52445C">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/badgeslbltxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Badges / Achievements"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg1"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/badge1" />
+
+                            <TextView
+                                android:id="@+id/bdg1txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Complete a Task"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg2"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/badge2" />
+
+                            <TextView
+                                android:id="@+id/bdg2txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Complete 10 hours of work"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg3"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/badge3" />
+
+                            <TextView
+                                android:id="@+id/bdg3txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Add your first time entry"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg4"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="4"
+                                app:srcCompat="@drawable/badge4" />
+
+
+                            <TextView
+                                android:id="@+id/bdg4txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Complete 5 tasks"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg5"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/badge5" />
+
+                            <TextView
+                                android:id="@+id/bdg5txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Add your first project"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg6"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/badge6" />
+
+                            <TextView
+                                android:id="@+id/bdg6txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Connect your Facebook account"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/Light_grey_purple"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/bdg7"
+                                android:layout_gravity="center"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/badge7" />
+
+                            <TextView
+                                android:id="@+id/bdg7txt"
+                                android:layout_width="130dp"
+                                android:layout_height="31dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="Be first in your leader board"
+                                android:textAlignment="center"
+                                android:textColor="@color/dark_purple"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/button_bg"
+                        android:layout_marginLeft="15dp"
+                        android:textAlignment="center"
+                        android:text="General Settings"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            app:cardBackgroundColor="@android:color/transparent"
+                            app:cardElevation="0dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="234dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView18"
+                                    android:layout_width="238dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    android:layout_weight="1"
+                                    android:text="Date Format"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/textView20"
+                                    android:layout_width="238dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    android:layout_weight="1"
+                                    android:text="Use 24-hour Clock"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/textView23"
+                                    android:layout_width="298dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    android:layout_weight="1"
+                                    android:text="First Day of the Week"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp" />
+
+                                <TextView
+                                    android:id="@+id/notifcationlbl"
+                                    android:layout_width="238dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    android:layout_weight="1"
+                                    android:text="Notifications"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="145dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right|center"
+                            app:cardBackgroundColor="@android:color/transparent"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="198dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="vertical">
+
+                                <Spinner
+                                    android:id="@+id/DateSpinner"
+                                    android:layout_width="150dp"
+                                    android:background="@color/min_blue"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="1"
+                                    android:entries="@array/dateFormats"/>
+
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:id="@+id/hourswitch"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="125dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:showText="false" />
+
+                                <Spinner
+                                    android:id="@+id/weekdaysSpinner"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="1"
+                                    android:entries="@array/weekdays"
+                                    android:background="@color/min_blue" />
+
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:id="@+id/notificationswitch"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="125dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:showText="false" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/savebtn"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/white"
+                        android:text="Save Changes and Exit"
+                        android:textColor="@color/blue" />
+
+                    <Button
+                        android:id="@+id/logoutbtn"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/orange"
+                        android:text="Sign-Out"
+                        android:layout_marginBottom="60dp"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:id="@+id/fl_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/custom_col"
+
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/nav_menu"/>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

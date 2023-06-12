@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/rowNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/rowProjectName"
+        android:layout_marginBottom="2sp"
+        android:textColor="@color/dark_purple"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/rowProjectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="28sp"
+        android:textColor="@color/dark_purple"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/Projcolourtxt"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/circle_background"
+        android:textAlignment="center"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/light_red"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+    <!--
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:id="@+id/btnDeleteProject"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btnEditProject"
+            android:layout_marginRight="18sp"
+            android:src="@drawable/deleteproject"/>
+
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:id="@+id/btnEditProject"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18sp"
+            android:src="@drawable/editproject"
+            android:layout_alignParentRight="true"/>
+    -->
+</RelativeLayout>
