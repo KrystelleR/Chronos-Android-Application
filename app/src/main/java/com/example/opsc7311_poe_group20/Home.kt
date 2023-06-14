@@ -18,16 +18,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.AppCompatButton
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var items : MutableList<TimesheetItems>
     lateinit var adptr :ListViewTimesheetApdt
+
+    private lateinit var mindate: Date
+    private lateinit var Maxdate:Date
+
+    var minHours : Int = 0
+    var maxHours : Int = 0
+    var totalTime : Int = 0
 
     companion object {
 
@@ -41,6 +51,45 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        var maxdatebtn: AppCompatButton = findViewById<AppCompatButton>(R.id.maxiumdate_fab)
+        var mindatebtn: AppCompatButton = findViewById<AppCompatButton>(R.id.mindate_fab)
+
+        mindatebtn.setOnClickListener {
+            showDateMinPickerDialog(mindatebtn)
+        }
+        maxdatebtn.setOnClickListener {
+            showDateMaxPickerDialog(maxdatebtn)
+        }
+        // Get SharedPreferences instance
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userEmail = sharedPreferences.getString("email", "")
+
+        val user = UserManager.userList.find { it.email == userEmail }
+        if (user != null) {
+            minHours= user.min
+            maxHours = user.max
+
+            val mintxt = findViewById<TextView>(R.id.mintxt)
+            mintxt.text = "Min: " + minHours + " Hour/s"
+
+            val maxtxt = findViewById<TextView>(R.id.maxtxt)
+            maxtxt.text = "Max: " + maxHours + " Hour/s"
+        }
+
+        val timesheetEntries = Timesheetobj.timesheetlist
+
+        for (entry in timesheetEntries) {
+            if(entry.email ==userEmail) {
+                totalTime += entry.duration
+            }
+        }
+
+        val myHours = totalTime / 60
+        val myMinutes = totalTime % 60
+
+        val total = findViewById<TextView>(R.id.totaltxt)
+        total.text = "Total Time done today: $myHours Hour/s and $myMinutes Minute/s"
 
         navView = findViewById(R.id.navView)
         navView.setNavigationItemSelectedListener(this)
@@ -56,9 +105,6 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
 
-        // Retrieve email value from SharedPreferences
-        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val userEmail = sharedPreferences.getString("email", "")
         val name = sharedPreferences.getString("name", "")
         val profilePicture = sharedPreferences.getString("profilePicture", null)
 
@@ -125,6 +171,22 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         //to see updated results
         lvTimesheet.adapter = adptr
+
+        var searchbtn: View = findViewById(R.id.search)
+        //var minidateBtn: View = findViewById(R.id.mindate_fab)
+        //var maxiumdatebtn: View = findViewById(R.id.maxiumdate_fab)
+        //var filterBtn: View = findViewById(R.id.search)
+        //var lstTimesheet : ListView =findViewById(R.id.lvTimesheets)
+        searchbtn.setOnClickListener {
+            val filteredList = Timesheetobj.timesheetlist.filter { dataItem ->
+                val itemDate = dataItem.date // Access the date property of your data item
+                // Implement your filtering logic here based on minDate and maxDate
+                itemDate in mindate..Maxdate
+            }
+            adptr.clear()
+            adptr.addAll(filteredList)
+            adptr.notifyDataSetChanged()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -132,6 +194,39 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun showDateMinPickerDialog(v: View) {
+        val newFragment = MinDatePickerFragment()
+        newFragment.show(supportFragmentManager, "datePicker")
+    }
+    fun showDateMaxPickerDialog(v: View) {
+        val newFragment = MaxDatePickerFragment()
+        newFragment.show(supportFragmentManager, "datePicker")
+    }
+    fun addMiniDateTo(date: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+        val parsedDate = inputFormat.parse(date)
+        val formattedDateStr = outputFormat.format(parsedDate)
+
+        mindate = outputFormat.parse(formattedDateStr)
+
+        val theDate = findViewById<TextView>(R.id.minidateview)
+        theDate.text = outputFormat.format(mindate)
+    }
+    fun addMaxDateTo(date: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+        val parsedDate = inputFormat.parse(date)
+        val formattedDateStr = outputFormat.format(parsedDate)
+
+        Maxdate = outputFormat.parse(formattedDateStr)
+
+        val theDate = findViewById<TextView>(R.id.maxdateview)
+        theDate.text = outputFormat.format(Maxdate)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -207,4 +302,36 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     }
 }
 
+class MinDatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        // Use the current date as the default date in the picker
+        val c = android.icu.util.Calendar.getInstance()
+        val year = c.get(android.icu.util.Calendar.YEAR)
+        val month = c.get(android.icu.util.Calendar.MONTH)
+        val day = c.get(android.icu.util.Calendar.DAY_OF_MONTH)
+        // Create a new instance of DatePickerDialog and return it
+        return DatePickerDialog(requireContext(), this, year, month, day)
+    }
+    override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
+        // Do something with the date chosen by the user
+        val selectedDate = "$year-${month + 1}-$day"
+        (requireActivity() as Home).addMiniDateTo(selectedDate)
+    }
+}
 
+class MaxDatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        // Use the current date as the default date in the picker
+        val c = android.icu.util.Calendar.getInstance()
+        val year = c.get(android.icu.util.Calendar.YEAR)
+        val month = c.get(android.icu.util.Calendar.MONTH)
+        val day = c.get(android.icu.util.Calendar.DAY_OF_MONTH)
+        // Create a new instance of DatePickerDialog and return it
+        return DatePickerDialog(requireContext(), this, year, month, day)
+    }
+    override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
+        // Do something with the date chosen by the user
+        val selectedDate = "$year-${month + 1}-$day"
+        (requireActivity() as Home).addMaxDateTo(selectedDate)
+    }
+}

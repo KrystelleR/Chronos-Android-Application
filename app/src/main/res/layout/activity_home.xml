@@ -12,21 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/fab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btnshape"
-            android:contentDescription="@string/timesheet_item"
-            android:text="@string/timesheet_starter"
-            android:textColor="@color/white"
-            android:layout_marginTop="16dp"
-            android:padding="10dp"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,16 +29,213 @@
                 android:orientation="vertical"
                 android:layout_centerVertical="true">
 
-                <ListView
-                    android:id="@+id/lvTimesheets"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="634dp"
-                    android:padding="16dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="My Timesheet Entries"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/fab"
+                        android:layout_width="76dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/btnshape"
+                        android:contentDescription="@string/timesheet_item"
+                        android:text="+"
+                        android:textSize="40dp"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="390dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="120dp"
+                    android:backgroundTint="@color/grey_purple"
+                    android:layout_gravity="center" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/myGoal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="My Daily Goal"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="25dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mintxt"
+                                android:layout_width="211dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Min: 5 Hour/s"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="italic" />
+
+                            <TextView
+                                android:id="@+id/maxtxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Max: 7 Hour/s"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/totaltxt"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/blue_purple"
+                            android:text="Hours done today: 2 Hour/s"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/minidateview"
+                                android:layout_width="170dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="10dp"
+                                android:ems="10"
+                                android:inputType="time"
+                                android:text="22 June 2023"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="25dp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/mindate_fab"
+                                android:layout_width="200dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/btnshape"
+                                android:contentDescription="@string/timesheet_item"
+                                android:drawableLeft="@drawable/time"
+                                android:onClick="showTimePickerDialog"
+                                android:padding="10dp"
+                                android:text="Add minimum date"
+                                android:textColor="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/maxdateview"
+                                android:ems="10"
+                                android:layout_width="170dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="10dp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:textSize="25dp"
+                                android:text="22 June 2023"
+                                android:inputType="time" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/maxiumdate_fab"
+                                android:layout_width="200dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/btnshape"
+                                android:contentDescription="@string/timesheet_item"
+                                android:drawableLeft="@drawable/time"
+                                android:onClick="showTimePickerDialog"
+                                android:padding="10dp"
+                                android:text="Add maximum date"
+                                android:textColor="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+                        </LinearLayout>
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btnshape"
+                            android:contentDescription="@string/timesheet_item"
+                            android:text="Search"
+                            android:drawableLeft="@drawable/baseline_search_24"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="16dp"
+                            android:padding="10dp"
+                            android:layout_gravity="center"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </LinearLayout>
+
+                    <ScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp">
+
+                        <ListView
+                            android:id="@+id/lvTimesheets"
+                            android:layout_width="match_parent"
+                            android:layout_height="634dp"
+                            android:padding="16dp" />
+                    </ScrollView>
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
         android:layout_width="wrap_content"
@@ -63,5 +245,4 @@
         android:background="@color/white"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"/>
-
 </androidx.drawerlayout.widget.DrawerLayout>
