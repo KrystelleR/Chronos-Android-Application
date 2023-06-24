@@ -5,22 +5,16 @@
     android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/black"/>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="15dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,8 +26,8 @@
 
             <TextView
                 android:id="@+id/colourtxt"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/circle_background"
@@ -50,11 +44,11 @@
                 <TextView
                     android:id="@+id/heading"
                     android:layout_width="175dp"
-                    android:layout_height="47dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:text="@string/timeEntry"
                     android:textColor="@color/black"
-                    android:textSize="36sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -63,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:text="Date"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="italic" />
 
                 <TextView
@@ -72,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:text="Hours and Minutes"
-                    android:textSize="20dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

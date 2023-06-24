@@ -20,6 +20,8 @@
     <color name="blue">#0F90D7</color>
     <color name="grey_purple">#52445C</color>
     <color name="Light_grey_purple">#A88DBC</color>
+    <color name="new_purple">#d2cfd4</color>
+
 
     <color name="custom">
         <gradient

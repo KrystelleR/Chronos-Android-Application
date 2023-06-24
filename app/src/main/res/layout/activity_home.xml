@@ -8,11 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     tools:context=".Home">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,220 +16,387 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerVertical="true">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/greetingtxt"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Welcome Back, Krystelle"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="370dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/orange">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="My Timesheet Entries"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="30dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/fab"
-                        android:layout_width="76dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/btnshape"
-                        android:contentDescription="@string/timesheet_item"
-                        android:text="+"
-                        android:textSize="40dp"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="390dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_height="120dp"
-                    android:backgroundTint="@color/grey_purple"
-                    android:layout_gravity="center" >
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/myGoal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="My Daily Goal"
+                            android:layout_marginLeft="10dp"
+                            android:text="My Daily Goal:"
+                            android:textStyle="bold"
                             android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="25dp" />
+                            android:textSize="16dp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/mintxt"
-                                android:layout_width="211dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Min: 5 Hour/s"
-                                android:textAlignment="center"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="italic" />
-
-                            <TextView
-                                android:id="@+id/maxtxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Max: 7 Hour/s"
-                                android:textAlignment="center"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
                         <TextView
-                            android:id="@+id/totaltxt"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/mintxt"
+                            android:layout_width="115dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:background="@color/blue_purple"
-                            android:text="Hours done today: 2 Hour/s"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/light_purple"
+                            android:text="Min: 5 hrs"
                             android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="20dp" />
+                            android:textSize="18dp" />
 
+                        <TextView
+                            android:id="@+id/maxtxt"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/light_purple"
+                            android:text="Min: 12 hrs"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/blue">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_centerVertical="true">
-                    <LinearLayout
+                    android:layout_height="39dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/totaltxtlbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:text="Hours done today:"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/totaltxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="2 Hour/s"
+                        android:textAlignment="center"
+                        android:textColor="@color/grey_purple"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="304dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="My Timesheet Entries"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fab"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/btnshape"
+                android:contentDescription="@string/timesheet_item"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
+
+        </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/new_purple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView30"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Filter Time Entries"
+                        android:background="@color/grey_purple"
+                        android:textStyle="italic"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="17dp" />
+
+                    <LinearLayout
+                        android:layout_width="370dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:layout_width="281dp"
+                            android:layout_height="81dp"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/minidateview"
-                                android:layout_width="170dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="10dp"
-                                android:ems="10"
-                                android:inputType="time"
-                                android:text="22 June 2023"
-                                android:textAlignment="center"
-                                android:textColor="@color/white"
-                                android:textSize="25dp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/mindate_fab"
-                                android:layout_width="200dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btnshape"
-                                android:contentDescription="@string/timesheet_item"
-                                android:drawableLeft="@drawable/time"
-                                android:onClick="showTimePickerDialog"
-                                android:padding="10dp"
-                                android:text="Add minimum date"
-                                android:textColor="@color/white"
-                                app:layout_constraintBottom_toBottomOf="parent" />
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/mindate_fab"
+                                    android:layout_width="125dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btnshape"
+                                    android:contentDescription="@string/timesheet_item"
+                                    android:drawableLeft="@drawable/time"
+                                    android:onClick="showTimePickerDialog"
+                                    android:text="Start Date"
+                                    android:textColor="@color/white"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:id="@+id/minidateview"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@color/dark_purple"
+                                    android:inputType="time"
+                                    android:text="22 June 2023"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="281dp"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/maxiumdate_fab"
+                                    android:layout_width="125dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/btnshape"
+                                    android:contentDescription="@string/timesheet_item"
+                                    android:drawableLeft="@drawable/time"
+                                    android:onClick="showTimePickerDialog"
+                                    android:text="End Date"
+                                    android:textColor="@color/white"
+                                    android:textSize="12dp"
+                                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/maxdateview"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@color/dark_purple"
+                                    android:inputType="time"
+                                    android:text="22 June 2023"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="15dp" />
+                            </LinearLayout>
+
                         </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:id="@+id/maxdateview"
-                                android:ems="10"
-                                android:layout_width="170dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="10dp"
-                                android:textColor="@color/white"
-                                android:textAlignment="center"
-                                android:textSize="25dp"
-                                android:text="22 June 2023"
-                                android:inputType="time" />
 
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/maxiumdate_fab"
-                                android:layout_width="200dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/btnshape"
-                                android:contentDescription="@string/timesheet_item"
-                                android:drawableLeft="@drawable/time"
-                                android:onClick="showTimePickerDialog"
-                                android:padding="10dp"
-                                android:text="Add maximum date"
-                                android:textColor="@color/white"
-                                app:layout_constraintBottom_toBottomOf="parent" />
-                        </LinearLayout>
-
-
-                        <androidx.appcompat.widget.AppCompatButton
+                        <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/search"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="50dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
                             android:background="@drawable/btnshape"
                             android:contentDescription="@string/timesheet_item"
-                            android:text="Search"
-                            android:drawableLeft="@drawable/baseline_search_24"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="16dp"
-                            android:padding="10dp"
-                            android:layout_gravity="center"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            android:src="@drawable/baseline_search_24" />
+
                     </LinearLayout>
-
-                    <ScrollView
-                        android:layout_width="wrap_content"
-                        android:layout_height="300dp">
-
-                        <ListView
-                            android:id="@+id/lvTimesheets"
-                            android:layout_width="match_parent"
-                            android:layout_height="634dp"
-                            android:padding="16dp" />
-                    </ScrollView>
-
                 </LinearLayout>
-            </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/new_userID"
+                android:layout_width="380dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="No Entries found"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Click on me to add your first entry"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:id="@+id/myScrollView"
+                android:layout_marginTop="20dp"
+                android:background="@color/grey_purple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/lvTimesheets"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/blue_purple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tipNumbertxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Productivity Tip #5"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tiptxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="Start each day by identifying the most important tasks you need to accomplish and focus on those first. "
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

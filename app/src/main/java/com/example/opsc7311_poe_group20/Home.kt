@@ -19,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +40,8 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     var maxHours : Int = 0
     var totalTime : Int = 0
 
+    val tipList: MutableList<String> = mutableListOf()
+
     companion object {
 
         var clickedItemPosition: Int = -1
@@ -52,8 +55,33 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        tipList.add("Start each day by identifying the most important tasks you need to accomplish and focus on those first.")
+        tipList.add("Large tasks can be overwhelming, so break them down into smaller, more manageable steps to make progress easier.")
+        tipList.add("Clearly define what you want to achieve and set specific, measurable goals to track your progress.")
+        tipList.add("Minimize interruptions by turning off notifications, closing unnecessary tabs, and creating a quiet work environment.")
+        tipList.add("Allocate specific time blocks for different tasks or activities to ensure better time management and prevent multitasking.")
+        tipList.add("Give yourself short breaks throughout the day to recharge and maintain your focus and productivity.")
+        tipList.add("If possible, delegate tasks or outsource certain activities to others, allowing you to focus on high-priority responsibilities.")
+        tipList.add("Work in focused, 25-minute intervals (called Pomodoros) followed by short breaks to enhance concentration and productivity.")
+        tipList.add("Explore task management apps, note-taking tools, or project management software to streamline your workflow and stay organized.")
+        tipList.add("Prioritize self-care, get enough sleep, eat well, and exercise regularly. A healthy mind and body contribute to increased productivity.")
+
+        val tipTextView = findViewById<TextView>(R.id.tiptxt)
+        val randomTip = tipList.random()
+        tipTextView.text = randomTip
+
+        val tipIndex = tipList.indexOf(randomTip) + 1
+        val tipNum = findViewById<TextView>(R.id.tipNumbertxt)
+        tipNum.text = "Productivity Tip #"+ tipIndex
+
+
         var maxdatebtn: AppCompatButton = findViewById<AppCompatButton>(R.id.maxiumdate_fab)
         var mindatebtn: AppCompatButton = findViewById<AppCompatButton>(R.id.mindate_fab)
+
+        val myTip = findViewById<TextView>(R.id.tiptxt)
+        myTip.isSelected = true
+
+        updateCardVisibility()
 
         mindatebtn.setOnClickListener {
             showDateMinPickerDialog(mindatebtn)
@@ -64,6 +92,10 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         // Get SharedPreferences instance
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val userEmail = sharedPreferences.getString("email", "")
+        val userName = sharedPreferences.getString("name", "")
+
+        val greeting = findViewById<TextView>(R.id.greetingtxt)
+        greeting.text = "Welcome back, " + userName
 
         val user = UserManager.userList.find { it.email == userEmail }
         if (user != null) {
@@ -71,10 +103,10 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             maxHours = user.max
 
             val mintxt = findViewById<TextView>(R.id.mintxt)
-            mintxt.text = "Min: " + minHours + " Hour/s"
+            mintxt.text = "Min: " + minHours + " hrs"
 
             val maxtxt = findViewById<TextView>(R.id.maxtxt)
-            maxtxt.text = "Max: " + maxHours + " Hour/s"
+            maxtxt.text = "Max: " + maxHours + " hrs"
         }
 
         val timesheetEntries = Timesheetobj.timesheetlist
@@ -89,7 +121,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         val myMinutes = totalTime % 60
 
         val total = findViewById<TextView>(R.id.totaltxt)
-        total.text = "Total Time done today: $myHours Hour/s and $myMinutes Minute/s"
+        total.text = "$myHours Hour/s and $myMinutes Minute/s"
 
         navView = findViewById(R.id.navView)
         navView.setNavigationItemSelectedListener(this)
@@ -171,6 +203,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         //to see updated results
         lvTimesheet.adapter = adptr
+        updateCardVisibility()
 
         var searchbtn: View = findViewById(R.id.search)
         //var minidateBtn: View = findViewById(R.id.mindate_fab)
@@ -186,6 +219,32 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             adptr.clear()
             adptr.addAll(filteredList)
             adptr.notifyDataSetChanged()
+        }
+    }
+
+    private fun updateCardVisibility() {
+        val card = findViewById<CardView>(R.id.new_userID)
+        val scroll = findViewById<ScrollView>(R.id.myScrollView)
+        if (Timesheetobj.timesheetlist.isEmpty()) {
+            card.visibility = View.VISIBLE
+            scroll.visibility = View.GONE
+
+            card.setOnClickListener {
+                if(ProjectManager.projectList.size == 0){
+                    // Handle item1 click
+                    val intent1 = Intent(this, AddProject::class.java)
+                    startActivity(intent1)
+                    Toast.makeText(this, "Add a project first" , Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    // Handle item1 click
+                    val intent1 = Intent(this, Timesheets::class.java)
+                    startActivity(intent1)
+                }
+            }
+        } else {
+            card.visibility = View.GONE
+            scroll.visibility = View.VISIBLE
         }
     }
 
