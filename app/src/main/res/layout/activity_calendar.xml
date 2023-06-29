@@ -108,7 +108,7 @@
                         android:orientation="vertical" >
 
                         <ListView
-                            android:id="@+id/lvTimesheets"
+                            android:id="@+id/lvTimesheetEntries"
                             android:layout_width="match_parent"
                             android:layout_height="230dp" />
 

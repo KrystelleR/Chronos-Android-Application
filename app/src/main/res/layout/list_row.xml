@@ -33,23 +33,5 @@
         android:textSize="20dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"/>
-    <!--
-        <ImageView
-            android:layout_width="25sp"
-            android:layout_height="25sp"
-            android:id="@+id/btnDeleteProject"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/btnEditProject"
-            android:layout_marginRight="18sp"
-            android:src="@drawable/deleteproject"/>
 
-        <ImageView
-            android:layout_width="25sp"
-            android:layout_height="25sp"
-            android:id="@+id/btnEditProject"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="18sp"
-            android:src="@drawable/editproject"
-            android:layout_alignParentRight="true"/>
-    -->
 </RelativeLayout>

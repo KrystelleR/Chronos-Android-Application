@@ -82,6 +82,18 @@ class Calendar : AppCompatActivity() {
             calendarView.setDate(calendar.timeInMillis, true, true) // Set the updated date in the CalendarView
 
             theUserDate = nextDate
+
+            //ADAPTER
+            var lvTimesheetEntry : ListView =findViewById(R.id.lvTimesheetEntries)
+            //set project list to items and pass as param of ListViewAdapter object.
+            val items = Timesheetobj.timesheetlist
+
+            //adapter holds data that listview will display. ListViewAdapter is our custom adapter class we made
+            val adptr = calendarAdapter(this, items, theUserDate)
+
+
+            //to see updated results
+            lvTimesheetEntry.adapter = adptr
         }
 
 
@@ -117,6 +129,18 @@ class Calendar : AppCompatActivity() {
             calendarView.setDate(calendar.timeInMillis, true, true) // Set the updated date in the CalendarView
 
             theUserDate = previousDate
+
+            //ADAPTER
+            var lvTimesheetEntry : ListView =findViewById(R.id.lvTimesheetEntries)
+            //set project list to items and pass as param of ListViewAdapter object.
+            val items = Timesheetobj.timesheetlist
+
+            //adapter holds data that listview will display. ListViewAdapter is our custom adapter class we made
+            val adptr = calendarAdapter(this, items, theUserDate)
+
+
+            //to see updated results
+            lvTimesheetEntry.adapter = adptr
         }
 
         val calendarView = findViewById<CalendarView>(R.id.calendarView)
@@ -154,6 +178,18 @@ class Calendar : AppCompatActivity() {
 
             val backwardsBtn = findViewById<Button>(R.id.backwards)
             backwardsBtn.isEnabled = true
+
+            //ADAPTER
+            var lvTimesheetEntry : ListView =findViewById(R.id.lvTimesheetEntries)
+            //set project list to items and pass as param of ListViewAdapter object.
+            val items = Timesheetobj.timesheetlist
+
+            //adapter holds data that listview will display. ListViewAdapter is our custom adapter class we made
+            val adptr = calendarAdapter(this, items, theUserDate)
+
+
+            //to see updated results
+            lvTimesheetEntry.adapter = adptr
         }
 
 
@@ -161,19 +197,16 @@ class Calendar : AppCompatActivity() {
 
 
         //ADAPTER
-        var lvTimesheet : ListView =findViewById(R.id.lvTimesheets)
+        var lvTimesheetEntry : ListView =findViewById(R.id.lvTimesheetEntries)
         //set project list to items and pass as param of ListViewAdapter object.
-        items = Timesheetobj.timesheetlist
+        val items = Timesheetobj.timesheetlist
 
         //adapter holds data that listview will display. ListViewAdapter is our custom adapter class we made
-        adptr = ListViewTimesheetApdt(this, items)
+        val adptr = calendarAdapter(this, items, theUserDate)
 
 
-
-
-
-
-
+        //to see updated results
+        lvTimesheetEntry.adapter = adptr
 
 
 
