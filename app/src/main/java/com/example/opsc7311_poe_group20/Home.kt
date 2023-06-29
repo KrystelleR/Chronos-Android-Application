@@ -310,9 +310,17 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 true
             }
             R.id.item3 -> {
-                // Handle item3 click
-                val intent3 = Intent(this, Stopwatch::class.java)
-                startActivity(intent3)
+                if(ProjectManager.projectList.size == 0){
+                    // Handle item1 click
+                    val intent1 = Intent(this, AddProject::class.java)
+                    startActivity(intent1)
+                    Toast.makeText(this, "Add a project first" , Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    val intent3 = Intent(this, Stopwatch::class.java)
+                    startActivity(intent3)
+                }
+                true
             }
             R.id.item4 -> {
                 // Handle item4 click

@@ -17,6 +17,7 @@
         >
 
         <TextView
+            android:id="@+id/startbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stopwatch"
@@ -28,19 +29,32 @@
             android:layout_gravity="center"/>
 
         <TextView
+            android:id="@+id/timeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/light_purple"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="90dp"
             android:textSize="100sp"
             android:layout_gravity="center"
-            android:text="00:00.00"/>
+            android:text="00:00:00"/>
 
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginTop="200dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="Currently Working On:" />
 
-
-
-
+        <Spinner
+            android:id="@+id/projectspinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/white" />
 
 
     </LinearLayout>
@@ -48,59 +62,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="230dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/startStopButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:text="Start"
-            android:drawableLeft="@drawable/play_watch"
+            android:drawableLeft="@drawable/start"
             android:textColor="@color/white"
             android:layout_marginTop="1dp"
             android:padding="10dp"
             android:layout_gravity="center"
-            android:id="@+id/btnPlaywatch"
             android:layout_weight="1"
-            android:layout_margin="5dp"
-
-            />
-
-
-
+            android:backgroundTint="@null"
+            android:layout_margin="5dp" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
-            android:text="Pause"
+            android:text="STOP"
             android:textColor="@color/white"
             android:layout_marginTop="1dp"
             android:padding="10dp"
             android:layout_gravity="center"
-            android:id="@+id/btnPauseWatch"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:drawableLeft="@drawable/pause_watch"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
-            android:text="reset"
-            android:textColor="@color/white"
-            android:layout_marginTop="1dp"
-            android:padding="10dp"
-            android:layout_gravity="center"
-            android:id="@+id/btnResetwatch"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:drawableLeft="@drawable/reset_watch"
-
-            />
+            android:drawableLeft="@drawable/stop" />
 
     </LinearLayout>
     <RelativeLayout
@@ -120,7 +112,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/custom_col"
-
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:menu="@menu/nav_menu"/>
