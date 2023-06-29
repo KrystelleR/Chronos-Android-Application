@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -111,9 +112,23 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         val timesheetEntries = Timesheetobj.timesheetlist
 
+
+
         for (entry in timesheetEntries) {
+            // Inside your function or method
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+            val formattedDate = dateFormat.format(entry.date)
+            Log.d("tag", formattedDate)
+
+            val currentDate = Date()
+            val formattedCurrentDate = dateFormat.format(currentDate)
+            Log.d("tag", formattedCurrentDate)
+
             if(entry.email ==userEmail) {
-                totalTime += entry.duration
+                if(formattedDate == formattedCurrentDate) {
+                    totalTime += entry.duration
+                }
             }
         }
 

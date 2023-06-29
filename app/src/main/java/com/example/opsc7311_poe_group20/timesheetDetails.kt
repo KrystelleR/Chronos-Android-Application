@@ -36,6 +36,17 @@ class timesheetDetails : AppCompatActivity() {
         val theDate = findViewById<TextView>(R.id.dateview)
         theDate.text = formattedDate
 
+        val theHours = findViewById<TextView>(R.id.hours)
+        val theMinutes = findViewById<TextView>(R.id.minutes)
+
+        val duration = Timesheetobj.timesheetlist[Home.clickedItemPosition].duration
+
+        val totalHours: Int = duration / 60
+        val totalMinutes: Int = duration % 60
+
+        theHours.text = totalHours.toString() + " hour/s"
+        theMinutes.text = totalMinutes.toString() + " minute/s"
+
         val project = findViewById<TextView>(R.id.selecedProjecttxt)
         project.text = Timesheetobj.timesheetlist[Home.clickedItemPosition].projectName
 

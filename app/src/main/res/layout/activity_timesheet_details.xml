@@ -148,7 +148,7 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="40dp"
-                    android:background="@color/orange"
+                    android:background="@color/blue_purple"
                     android:orientation="horizontal">
 
                     <TextView
