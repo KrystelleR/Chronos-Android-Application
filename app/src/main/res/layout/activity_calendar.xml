@@ -30,9 +30,9 @@
                 android:textSize="30dp" />
 
             <CalendarView
-                android:id="@+id/calendarView2"
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="318dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:selectedWeekBackgroundColor="@color/orange" />
 
@@ -55,6 +55,7 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:id="@+id/backwards"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -77,6 +78,7 @@
                             android:textSize="20sp" />
 
                         <Button
+                            android:id="@+id/forward"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -91,7 +93,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/dayOfWeekTV3"
+                        android:id="@+id/dayOfWeek"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -100,17 +102,16 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/hoursView"
+                        <ListView
+                            android:id="@+id/lvTimesheets"
                             android:layout_width="match_parent"
-                            android:layout_height="341dp" />
+                            android:layout_height="230dp" />
+
                     </LinearLayout>
                 </LinearLayout>
 
