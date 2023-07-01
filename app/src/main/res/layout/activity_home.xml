@@ -381,7 +381,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="match_parent"
                 android:id="@+id/myScrollView"
                 android:layout_marginTop="20dp"
                 android:background="@color/dark_purple">
@@ -395,7 +395,7 @@
                     <ListView
                         android:id="@+id/lvTimesheets"
                         android:layout_width="match_parent"
-                        android:layout_height="230dp" />
+                        android:layout_height="165dp" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
