@@ -24,6 +24,35 @@ object Timesheetobj {
     val timesheetlist = mutableListOf<TimesheetItems>()
 }
 
+data class OwnBadges(
+    var badge1 : Boolean,
+    var badge2 : Boolean,
+    var badge3 : Boolean,
+    var badge4 : Boolean,
+    var badge5 : Boolean,
+    var badge6 : Boolean,
+    var badge7 : Boolean,
+    var badge8 : Boolean,
+    var badge9 : Boolean,
+    var badge10 : Boolean,
+    var email : String
+)
+
+object OwnBadgesObj {
+    val ownBadgeslist = mutableListOf<OwnBadges>()
+}
+
+data class myBadges(
+    var number : Int,
+    var badgeTitle : String,
+    var desc : String,
+    var image : Int
+)
+
+object BadgesObj {
+    val Badgeslist = mutableListOf<myBadges>()
+}
+
 data class Project(
     val ProjectID: Int,
     val ProjectName: String, //pk
@@ -58,12 +87,6 @@ object UserManager {
     val userList = mutableListOf<Users>()
 }
 
-data class Badges(
-    val badgesID : Int, //pk
-    val name: String,
-    val image: Image,
-    val email: String //fk user
-)
 
 data class UserSettings (
     val ID : Int, //pk

@@ -11,7 +11,7 @@
     <color name="max_blue">#96e8f3</color>
     <color name="background">#22162B</color>
     <color name="orange2">#F8890A</color>
-
+    <color name="gold">#AE8625</color>
     <color name="dark_purple">#22162B</color>
     <color name="orange">#F8890A</color>
     <color name="light_red">#DD6E6A</color>
@@ -21,6 +21,7 @@
     <color name="grey_purple">#52445C</color>
     <color name="Light_grey_purple">#A88DBC</color>
     <color name="new_purple">#d2cfd4</color>
+    <color name="grayish">#585759</color>
 
 
     <color name="custom">

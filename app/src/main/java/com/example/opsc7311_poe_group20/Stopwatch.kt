@@ -158,7 +158,7 @@ class Stopwatch : AppCompatActivity() {
             currentDate = Date()
             myStartTime = Calendar.getInstance()
 
-        // Set the time of the Calendar instance to the value of myStartTime
+            // Set the time of the Calendar instance to the value of myStartTime
             myStartTime.time = Time(currentDate.time)
 
             timerStartedNot = false

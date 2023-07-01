@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.util.Base64
 import android.util.Log
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.*
 
 class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -37,9 +40,11 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     private lateinit var mindate: Date
     private lateinit var Maxdate:Date
 
+    var populate:Boolean = false
     var minHours : Int = 0
     var maxHours : Int = 0
     var totalTime : Int = 0
+    var badgeCount: Int = 1
 
     val tipList: MutableList<String> = mutableListOf()
 
@@ -56,6 +61,17 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        // Get SharedPreferences instance
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userEmail = sharedPreferences.getString("email", "")
+        val userName = sharedPreferences.getString("name", "")
+        if (userEmail != null) {
+            checkEarnBadge(userEmail)
+        }
+
+        populateBadge()
+
+//tip of the day
         tipList.add("Start each day by identifying the most important tasks you need to accomplish and focus on those first.")
         tipList.add("Large tasks can be overwhelming, so break them down into smaller, more manageable steps to make progress easier.")
         tipList.add("Clearly define what you want to achieve and set specific, measurable goals to track your progress.")
@@ -90,10 +106,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         maxdatebtn.setOnClickListener {
             showDateMaxPickerDialog(maxdatebtn)
         }
-        // Get SharedPreferences instance
-        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val userEmail = sharedPreferences.getString("email", "")
-        val userName = sharedPreferences.getString("name", "")
+
 
         val greeting = findViewById<TextView>(R.id.greetingtxt)
         greeting.text = "Welcome back, " + userName
@@ -219,6 +232,10 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         //to see updated results
         lvTimesheet.adapter = adptr
         updateCardVisibility()
+        if (userEmail != null) {
+            checkEarnBadge(userEmail)
+        }
+
 
         var searchbtn: View = findViewById(R.id.search)
         //var minidateBtn: View = findViewById(R.id.mindate_fab)
@@ -301,7 +318,258 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         val theDate = findViewById<TextView>(R.id.maxdateview)
         theDate.text = outputFormat.format(Maxdate)
+
     }
+
+
+
+
+
+
+
+
+
+    private fun checkEarnBadge(email: String) {
+        val myBadge = OwnBadgesObj.ownBadgeslist.find { it.email == email }
+        val entries = Timesheetobj.timesheetlist.find { it.email == email }
+
+        //getting badgeCount
+        if (myBadge != null) {
+            if(myBadge.badge1){
+                badgeCount += 1
+            }
+            if(myBadge.badge2){
+                badgeCount += 1
+            }
+            if(myBadge.badge3){
+                badgeCount += 1
+            }
+            if(myBadge.badge4){
+                badgeCount += 1
+            }
+            if(myBadge.badge5){
+                badgeCount += 1
+            }
+        }
+
+
+        // badge1 (at least 1 entry)
+        if (myBadge != null && entries != null && !myBadge.badge1) {
+            myBadge.badge1 = true
+            val badge1 = BadgesObj.Badgeslist.firstOrNull { it.number == 1 }
+            if (badge1 != null) {
+                viewMyBadge(badge1.badgeTitle, badge1.image, badge1.desc, badgeCount)
+            }
+        }
+
+        // badge2 (an entry with 2+ hours duration)
+        if (myBadge != null && entries != null && !myBadge.badge2) {
+            var found : Boolean = false
+            val AllEntries: List<TimesheetItems> = Timesheetobj.timesheetlist.filter { it.email == email }
+
+            for(entry in AllEntries){
+                if (entry.duration >= 120) {
+                    found = true
+                    break
+                }
+            }
+                if (found == true) {
+                myBadge.badge2 = true
+                val badge2 = BadgesObj.Badgeslist.firstOrNull { it.number == 2 }
+                if (badge2 != null) {
+                    viewMyBadge(badge2.badgeTitle, badge2.image, badge2.desc, badgeCount)
+                }
+            }
+        }
+
+        // badge3 ( 5 or more entries in a single day)
+        if (myBadge != null && !myBadge.badge3) {
+            val entryGroups = Timesheetobj.timesheetlist
+                .filter { it.email == email }
+                .groupBy { "group" } // Grouping by a constant value
+
+            val dateCounts = entryGroups.filter { it.value.size >= 5 }
+
+            if (dateCounts.isNotEmpty()) {
+                myBadge.badge3 = true
+                val badge3 = BadgesObj.Badgeslist.firstOrNull { it.number == 3 }
+                if (badge3 != null) {
+                    viewMyBadge(badge3.badgeTitle, badge3.image, badge3.desc, badgeCount)
+                }
+            }
+        }
+
+        // badge4 (Meet the minimum daily goal for 10 consecutive days)
+        if (myBadge != null && !myBadge.badge4) {
+            val durationThreshold = 250 // Total duration threshold in minutes
+            val consecutiveDays = 10 // Number of consecutive days to check
+
+            val allDates = Timesheetobj.timesheetlist
+                .filter { it.email == email }
+                .map { it.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() }
+                .distinct()
+                .sorted()
+
+            var count = 0
+            var previousDate: LocalDate? = null
+
+            for (date in allDates) {
+                if (previousDate != null && date == previousDate.plusDays(1)) {
+                    val totalDuration = Timesheetobj.timesheetlist
+                        .filter {
+                            it.email == email && it.date.toInstant().atZone(ZoneId.systemDefault())
+                                .toLocalDate() == date
+                        }
+                        .sumOf { it.duration }
+
+                    if (totalDuration >= durationThreshold) {
+                        count++
+                        if (count == consecutiveDays) {
+                            myBadge.badge4 = true
+                            val badge4 = BadgesObj.Badgeslist.firstOrNull { it.number == 4 }
+                            if (badge4 != null) {
+                                badgeCount++
+                                viewMyBadge(
+                                    badge4.badgeTitle,
+                                    badge4.image,
+                                    badge4.desc,
+                                    badgeCount
+                                )
+                                break
+                            }
+                        }
+                    } else {
+                        count = 0
+                    }
+                } else {
+                    count = 1
+                }
+
+                previousDate = date
+            }
+        }
+
+        // badge5 (Create and manage 5 projects simultaneously)
+        if (myBadge != null && !myBadge.badge5) {
+            val AllProjects: List<Project> = ProjectManager.projectList.filter { it.email == email }
+            if(AllProjects.size >= 5){
+                myBadge.badge5 = true
+                val badge5 = BadgesObj.Badgeslist.firstOrNull { it.number == 5 }
+                if (badge5 != null) {
+                    viewMyBadge(badge5.badgeTitle, badge5.image, badge5.desc, badgeCount)
+                }
+            }
+        }
+
+        badgeCount = 1
+    }
+
+
+    private fun viewMyBadge(name : String, theImage : Int, description : String, Count : Int) {
+        val viewBadge = Dialog(this)
+        viewBadge.setContentView(R.layout.activity_badge)
+
+        // Get SharedPreferences instance
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userEmail = sharedPreferences.getString("email", "")
+        val userName = sharedPreferences.getString("name", "")
+
+        val userEarned = viewBadge.findViewById<TextView>(R.id.usernametxt)
+        userEarned.text = userName + " earned the"
+
+        val title = viewBadge.findViewById<TextView>(R.id.badgenametxt)
+        title.text = name + " Badge"
+
+        val image =  viewBadge.findViewById<ImageView>(R.id.badgeimg)
+        image.setImageResource(theImage)
+
+        val details = viewBadge.findViewById<TextView>(R.id.desctxt)
+        details.text = description
+
+        val myCount = viewBadge.findViewById<TextView>(R.id.collectedtxt)
+        myCount.text = "Collected: "  + Count + "/5 Badges"
+
+        viewBadge.show()
+
+        val okay = viewBadge.findViewById<Button>(R.id.okayButton)
+        okay.setOnClickListener(){
+            viewBadge.hide()
+        }
+    }
+
+    private fun populateBadge() {
+        if(populate == false){
+
+            val Badge1 =myBadges(
+             number = (BadgesObj.Badgeslist.size+1),
+             badgeTitle = "Time Apprentice",
+             desc = "Add your 1st time entry",
+             image = R.drawable.badge1
+            )
+            BadgesObj.Badgeslist.add(Badge1)
+
+            val Badge2 =myBadges(
+                number = (BadgesObj.Badgeslist.size+1),
+                badgeTitle = "Focused Workaholic",
+                desc = "Work for more than 2 hours in a single session",
+                image = R.drawable.badge2
+            )
+            BadgesObj.Badgeslist.add(Badge2)
+
+            val Badge3 =myBadges(
+                number = (BadgesObj.Badgeslist.size+1),
+                badgeTitle = "Productivity Guru",
+                desc = "Add 5 or more entries in a single day",
+                image = R.drawable.badge3
+            )
+            BadgesObj.Badgeslist.add(Badge3)
+
+            val Badge4 =myBadges(
+                number = (BadgesObj.Badgeslist.size+1),
+                badgeTitle = "Goal Crusher",
+                desc = "Meet the minimum daily goal for 10 consecutive days",
+                image = R.drawable.badge4
+            )
+            BadgesObj.Badgeslist.add(Badge4)
+
+            val Badge5 =myBadges(
+                number = (BadgesObj.Badgeslist.size+1),
+                badgeTitle = "Master Planner",
+                desc = "Create and manage 5 projects simultaneously",
+                image = R.drawable.badge5
+            )
+            BadgesObj.Badgeslist.add(Badge5)
+
+            populate = true
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

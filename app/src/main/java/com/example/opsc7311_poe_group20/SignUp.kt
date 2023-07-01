@@ -13,6 +13,7 @@ import android.net.Uri
 import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.example.opsc7311_poe_group20.OwnBadgesObj.ownBadgeslist
 
 class SignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,8 +141,23 @@ class SignUp : AppCompatActivity() {
                         IsNotification = true,
                         email = myEmail
                     )
-
                     UserSettingsManager.userSettingsList.add(newUserSettings)
+
+
+                    val newBadges =OwnBadges(
+                        badge1 = false,
+                        badge2 = false,
+                        badge3 = false,
+                        badge4 = false,
+                        badge5 = false,
+                        badge6 = false,
+                        badge7 = false,
+                        badge8 = false,
+                        badge9 = false,
+                        badge10 = false,
+                        email = myEmail
+                    )
+                    OwnBadgesObj.ownBadgeslist.add(newBadges)
 
                     val user = UserManager.userList.find { it.email == myEmail }
                     if (user != null) {

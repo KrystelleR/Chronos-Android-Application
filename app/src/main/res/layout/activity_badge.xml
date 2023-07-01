@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/new_purple"
+    android:layout_gravity="center"
+    android:layout_width="340dp"
+    android:layout_height="640dp"
+    tools:context=".badge">
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="620dp"
+        android:background="@color/grey_purple"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/usernametxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Krystelle earned the "
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/badgenametxt"
+            android:layout_width="303dp"
+            android:layout_height="134dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="The Badge"
+            android:textAlignment="center"
+            android:textColor="@color/gold"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/badgeimg"
+            android:layout_width="238dp"
+            android:layout_height="214dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            tools:srcCompat="@drawable/badge1" />
+
+        <TextView
+            android:id="@+id/desctxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="The details"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/collectedtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:text="Collected: 1/10 Badges"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/okayButton"
+            android:layout_gravity="center"
+            android:layout_width="224dp"
+            android:layout_height="30dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btnshape"
+            android:text="Okay" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
