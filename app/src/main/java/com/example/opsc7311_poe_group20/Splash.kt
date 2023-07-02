@@ -10,6 +10,7 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        supportActionBar?.hide()
 
         val splash = findViewById<ImageView>(R.id.splashimg)
         splash.alpha = 0f

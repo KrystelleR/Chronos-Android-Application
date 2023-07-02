@@ -192,10 +192,7 @@ class Calendar : AppCompatActivity() {
             lvTimesheetEntry.adapter = adptr
         }
 
-
-
-
-
+        
         //ADAPTER
         var lvTimesheetEntry : ListView =findViewById(R.id.lvTimesheetEntries)
         //set project list to items and pass as param of ListViewAdapter object.
@@ -204,14 +201,17 @@ class Calendar : AppCompatActivity() {
         //adapter holds data that listview will display. ListViewAdapter is our custom adapter class we made
         val adptr = calendarAdapter(this, items, theUserDate)
 
+        //click methods. short and long. Position is the index of the item that was clicked
+        lvTimesheetEntry.setOnItemClickListener { parent, view, i, id ->
+            var timeentryName : Int = items[i].timesheetID
+            Home.clickedItemPosition =i
+            //navigate to details page on short click
+            val intentDetails = Intent(this,timesheetDetails::class.java)
+            startActivity(intentDetails)
+        }
 
         //to see updated results
         lvTimesheetEntry.adapter = adptr
-
-
-
-
-
 
 
         //Navigation

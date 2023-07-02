@@ -606,9 +606,19 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 startActivity(intent5)
             }
             R.id.item6 -> {
-                // Handle item6 click
-                val intent6 = Intent(this, Pomodoro::class.java)
-                startActivity(intent6)
+
+                if(ProjectManager.projectList.size == 0){
+                    val intent1 = Intent(this, AddProject::class.java)
+                    startActivity(intent1)
+                    Toast.makeText(this, "Add a project first" , Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    // Handle item6 click
+                    val intent6 = Intent(this, Pomodoro::class.java)
+                    startActivity(intent6)
+                }
+                true
+
             }
             R.id.item7 -> {
                 // Handle item7 click
