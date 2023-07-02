@@ -40,7 +40,6 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     private lateinit var mindate: Date
     private lateinit var Maxdate:Date
 
-    var populate:Boolean = false
     var minHours : Int = 0
     var maxHours : Int = 0
     var totalTime : Int = 0
@@ -69,7 +68,9 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             checkEarnBadge(userEmail)
         }
 
-        populateBadge()
+        if(AllBadgesObj.AllBadgeslist.size !=5) {
+            populateBadge()
+        }
 
 //tip of the day
         tipList.add("Start each day by identifying the most important tasks you need to accomplish and focus on those first.")
@@ -329,36 +330,17 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
 
 
+
     private fun checkEarnBadge(email: String) {
         val myBadge = OwnBadgesObj.ownBadgeslist.find { it.email == email }
         val entries = Timesheetobj.timesheetlist.find { it.email == email }
 
-        //getting badgeCount
-        if (myBadge != null) {
-            if(myBadge.badge1){
-                badgeCount += 1
-            }
-            if(myBadge.badge2){
-                badgeCount += 1
-            }
-            if(myBadge.badge3){
-                badgeCount += 1
-            }
-            if(myBadge.badge4){
-                badgeCount += 1
-            }
-            if(myBadge.badge5){
-                badgeCount += 1
-            }
-        }
-
-
         // badge1 (at least 1 entry)
         if (myBadge != null && entries != null && !myBadge.badge1) {
             myBadge.badge1 = true
-            val badge1 = BadgesObj.Badgeslist.firstOrNull { it.number == 1 }
+            val badge1 = AllBadgesObj.AllBadgeslist.firstOrNull { it.number == 1 }
             if (badge1 != null) {
-                viewMyBadge(badge1.badgeTitle, badge1.image, badge1.desc, badgeCount)
+                viewMyBadge(badge1.badgeTitle, badge1.image, badge1.desc)
             }
         }
 
@@ -373,11 +355,11 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                     break
                 }
             }
-                if (found == true) {
+            if (found == true) {
                 myBadge.badge2 = true
-                val badge2 = BadgesObj.Badgeslist.firstOrNull { it.number == 2 }
+                val badge2 = AllBadgesObj.AllBadgeslist.firstOrNull { it.number == 2 }
                 if (badge2 != null) {
-                    viewMyBadge(badge2.badgeTitle, badge2.image, badge2.desc, badgeCount)
+                    viewMyBadge(badge2.badgeTitle, badge2.image, badge2.desc)
                 }
             }
         }
@@ -392,9 +374,9 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
             if (dateCounts.isNotEmpty()) {
                 myBadge.badge3 = true
-                val badge3 = BadgesObj.Badgeslist.firstOrNull { it.number == 3 }
+                val badge3 = AllBadgesObj.AllBadgeslist.firstOrNull { it.number == 3 }
                 if (badge3 != null) {
-                    viewMyBadge(badge3.badgeTitle, badge3.image, badge3.desc, badgeCount)
+                    viewMyBadge(badge3.badgeTitle, badge3.image, badge3.desc)
                 }
             }
         }
@@ -426,14 +408,13 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                         count++
                         if (count == consecutiveDays) {
                             myBadge.badge4 = true
-                            val badge4 = BadgesObj.Badgeslist.firstOrNull { it.number == 4 }
+                            val badge4 = AllBadgesObj.AllBadgeslist.firstOrNull { it.number == 4 }
                             if (badge4 != null) {
                                 badgeCount++
                                 viewMyBadge(
                                     badge4.badgeTitle,
                                     badge4.image,
-                                    badge4.desc,
-                                    badgeCount
+                                    badge4.desc
                                 )
                                 break
                             }
@@ -454,9 +435,9 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             val AllProjects: List<Project> = ProjectManager.projectList.filter { it.email == email }
             if(AllProjects.size >= 5){
                 myBadge.badge5 = true
-                val badge5 = BadgesObj.Badgeslist.firstOrNull { it.number == 5 }
+                val badge5 = AllBadgesObj.AllBadgeslist.firstOrNull { it.number == 5 }
                 if (badge5 != null) {
-                    viewMyBadge(badge5.badgeTitle, badge5.image, badge5.desc, badgeCount)
+                    viewMyBadge(badge5.badgeTitle, badge5.image, badge5.desc)
                 }
             }
         }
@@ -465,7 +446,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     }
 
 
-    private fun viewMyBadge(name : String, theImage : Int, description : String, Count : Int) {
+    private fun viewMyBadge(name : String, theImage : Int, description : String) {
         val viewBadge = Dialog(this)
         viewBadge.setContentView(R.layout.activity_badge)
 
@@ -486,8 +467,22 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         val details = viewBadge.findViewById<TextView>(R.id.desctxt)
         details.text = description
 
+        var Count = BadgesObj.Badgeslist.size +1
         val myCount = viewBadge.findViewById<TextView>(R.id.collectedtxt)
         myCount.text = "Collected: "  + Count + "/5 Badges"
+
+        val Badge = userEmail?.let {
+            myBadges(
+                number = (BadgesObj.Badgeslist.size+1),
+                badgeTitle = name,
+                desc = description,
+                image = theImage,
+                email = it
+            )
+        }
+        if (Badge != null) {
+            BadgesObj.Badgeslist.add(Badge)
+        }
 
         viewBadge.show()
 
@@ -498,51 +493,46 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     }
 
     private fun populateBadge() {
-        if(populate == false){
 
-            val Badge1 =myBadges(
-             number = (BadgesObj.Badgeslist.size+1),
-             badgeTitle = "Time Apprentice",
-             desc = "Add your 1st time entry",
-             image = R.drawable.badge1
-            )
-            BadgesObj.Badgeslist.add(Badge1)
+        val Badge1 =AllBadges(
+            number = (AllBadgesObj.AllBadgeslist.size+1),
+            badgeTitle = "Time Apprentice",
+            desc = "Add your 1st time entry",
+            image = R.drawable.badge1
+        )
+        AllBadgesObj.AllBadgeslist.add(Badge1)
 
-            val Badge2 =myBadges(
-                number = (BadgesObj.Badgeslist.size+1),
-                badgeTitle = "Focused Workaholic",
-                desc = "Work for more than 2 hours in a single session",
-                image = R.drawable.badge2
-            )
-            BadgesObj.Badgeslist.add(Badge2)
+        val Badge2 =AllBadges(
+            number = (AllBadgesObj.AllBadgeslist.size+1),
+            badgeTitle = "Focused Workaholic",
+            desc = "Work for more than 2 hours in a single session",
+            image = R.drawable.badge2
+        )
+        AllBadgesObj.AllBadgeslist.add(Badge2)
 
-            val Badge3 =myBadges(
-                number = (BadgesObj.Badgeslist.size+1),
-                badgeTitle = "Productivity Guru",
-                desc = "Add 5 or more entries in a single day",
-                image = R.drawable.badge3
-            )
-            BadgesObj.Badgeslist.add(Badge3)
+        val Badge3 =AllBadges(
+            number = (AllBadgesObj.AllBadgeslist.size+1),
+            badgeTitle = "Productivity Guru",
+            desc = "Add 5 or more entries in a single day",
+            image = R.drawable.badge3
+        )
+        AllBadgesObj.AllBadgeslist.add(Badge3)
 
-            val Badge4 =myBadges(
-                number = (BadgesObj.Badgeslist.size+1),
-                badgeTitle = "Goal Crusher",
-                desc = "Meet the minimum daily goal for 10 consecutive days",
-                image = R.drawable.badge4
-            )
-            BadgesObj.Badgeslist.add(Badge4)
+        val Badge4 =AllBadges(
+            number = (AllBadgesObj.AllBadgeslist.size+1),
+            badgeTitle = "Goal Crusher",
+            desc = "Meet the minimum daily goal for 10 consecutive days",
+            image = R.drawable.badge4
+        )
+        AllBadgesObj.AllBadgeslist.add(Badge4)
 
-            val Badge5 =myBadges(
-                number = (BadgesObj.Badgeslist.size+1),
-                badgeTitle = "Master Planner",
-                desc = "Create and manage 5 projects simultaneously",
-                image = R.drawable.badge5
-            )
-            BadgesObj.Badgeslist.add(Badge5)
-
-            populate = true
-        }
-
+        val Badge5 =AllBadges(
+            number = (AllBadgesObj.AllBadgeslist.size+1),
+            badgeTitle = "Master Planner",
+            desc = "Create and manage 5 projects simultaneously",
+            image = R.drawable.badge5
+        )
+        AllBadgesObj.AllBadgeslist.add(Badge5)
     }
 
 

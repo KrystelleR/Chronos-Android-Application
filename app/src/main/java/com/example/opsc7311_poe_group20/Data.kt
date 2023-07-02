@@ -30,11 +30,6 @@ data class OwnBadges(
     var badge3 : Boolean,
     var badge4 : Boolean,
     var badge5 : Boolean,
-    var badge6 : Boolean,
-    var badge7 : Boolean,
-    var badge8 : Boolean,
-    var badge9 : Boolean,
-    var badge10 : Boolean,
     var email : String
 )
 
@@ -46,11 +41,23 @@ data class myBadges(
     var number : Int,
     var badgeTitle : String,
     var desc : String,
-    var image : Int
+    var image : Int,
+    var email : String
 )
 
 object BadgesObj {
     val Badgeslist = mutableListOf<myBadges>()
+}
+
+data class AllBadges(
+    var number : Int,
+    var badgeTitle : String,
+    var desc : String,
+    var image : Int
+)
+
+object AllBadgesObj {
+    val AllBadgeslist = mutableListOf<AllBadges>()
 }
 
 data class Project(

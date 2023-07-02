@@ -74,7 +74,7 @@
                                 android:text="My Daily Goal:"
                                 android:textAlignment="center"
                                 android:textColor="@color/grey_purple"
-                                android:textSize="16dp"
+                                android:textSize="17dp"
                                 android:textStyle="bold" />
 
                             <TextView

@@ -150,11 +150,6 @@ class SignUp : AppCompatActivity() {
                         badge3 = false,
                         badge4 = false,
                         badge5 = false,
-                        badge6 = false,
-                        badge7 = false,
-                        badge8 = false,
-                        badge9 = false,
-                        badge10 = false,
                         email = myEmail
                     )
                     OwnBadgesObj.ownBadgeslist.add(newBadges)

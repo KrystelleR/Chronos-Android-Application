@@ -21,6 +21,8 @@ import android.view.ViewGroup
 import android.widget.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.widget.SwitchCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.io.*
 
 
@@ -99,6 +101,20 @@ class Profile : AppCompatActivity() {
         surnameTextView.hint = createItalicHint((if (surname != "") name else "Add Surname").toString())
         companyTextView.hint = createItalicHint((if (company != "") company else "Add Company").toString())
         mobileTextView.hint = createItalicHint((if (mobile != "") mobile else "Add Mobile Number").toString())
+
+
+        //ADAPTER
+        val rvBadges: RecyclerView = findViewById(R.id.rvBadges)
+        val items = BadgesObj.Badgeslist
+        val adapter = BadgeAdapter(items)
+        rvBadges.adapter = adapter
+        // Inside your activity or fragment
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvBadges.layoutManager = layoutManager
+
+        var discover = findViewById<TextView>(R.id.discovertxt)
+        var left = 5 - BadgesObj.Badgeslist.size
+        discover.text = "You have " + left + " more badges left to discover"
 
 
         val addBtn: Button = findViewById(R.id.editProfilebtn)
