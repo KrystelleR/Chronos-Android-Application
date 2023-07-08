@@ -40,8 +40,8 @@ class ProjectDetails : AppCompatActivity() {
 
         // Get SharedPreferences instance
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val projectID = sharedPreferences.getInt("projectID", -1)
-        val Project = ProjectManager.projectList.find { it.ProjectID == projectID }
+        val myProjectName = sharedPreferences.getString("projectName", "")
+        val Project = ProjectManager.projectList.find { it.projectName == myProjectName }
 
         val projectName = findViewById<TextView>(R.id.nametxt)
         myProjName = projectName.text.toString()
@@ -56,15 +56,15 @@ class ProjectDetails : AppCompatActivity() {
         val colour = findViewById<TextView>(R.id.colourtxt)
 
         if (Project != null) {
-            projectName.text = Project.ProjectName
-            priority.text = Project.ProjectPriority
-            client.text = Project.ClientName
-            if (Project.IsBillable) {
+            projectName.text = Project.projectName
+            priority.text = Project.projectPriority
+            client.text = Project.clientName
+            if (Project.isBillable) {
                 billable.text = "Yes"
             } else {
                 billable.text = "No"
             }
-            rate.text = (Project.Rate).toString()
+            rate.text = (Project.rate).toString()
             min.text = (Project.minimum_goal).toString()
             max.text = (Project.maximum_goal).toString()
 
@@ -81,7 +81,7 @@ class ProjectDetails : AppCompatActivity() {
             val shapeDrawable = createCircularShapeDrawable(colorResourceId)
             colour.background = shapeDrawable
 
-            val textColor = getTextColor(Project.ProjectPriority)
+            val textColor = getTextColor(Project.projectPriority)
             priority.setTextColor(textColor)
         }
 
@@ -260,7 +260,7 @@ class ProjectDetails : AppCompatActivity() {
     private fun calcProjTotalTime() {
 //        val btnstart : Button=findViewById(R.id.startDatePickerBtn)
 //        val btnend: Button =findViewById((R.id.endDatePickerBtn))
-        val project = ProjectManager.projectList[AllProjects.clickedItemPosition].ProjectName
+        val project = ProjectManager.projectList[AllProjects.clickedItemPosition].projectName
         val timesheetEntries = Timesheetobj.timesheetlist
         var totalTime: Int = 0
 

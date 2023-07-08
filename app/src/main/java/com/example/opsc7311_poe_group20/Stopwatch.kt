@@ -48,7 +48,7 @@ class Stopwatch : AppCompatActivity() {
         val filteredProjects = ProjectManager.projectList.filter { it.email == userEmail }
 
         // Extract the project names from the filtered projects
-        val projectNames = filteredProjects.map { it.ProjectName }
+        val projectNames = filteredProjects.map { it.projectName }
 
         // Set up ArrayAdapter to populate the spinner with the project names
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectNames)
@@ -116,14 +116,14 @@ class Stopwatch : AppCompatActivity() {
 
         if (userEmail != null) {
             val project =
-                ProjectManager.projectList.find { it.ProjectName == selectedItem && it.email == userEmail }
+                ProjectManager.projectList.find { it.projectName == selectedItem && it.email == userEmail }
             project?.totalHours = project?.totalHours?.plus(totalMinutes)!!
 
             val newEntry = TimesheetItems(
                 timesheetID = Timesheetobj.timesheetlist.size,
                 date = currentDate,
                 startTime = theStartTime,
-                EndTime = theEndTime,
+                endTime = theEndTime,
                 duration = totalMinutes,
                 decsrp = "",
                 images = "",

@@ -54,7 +54,7 @@ class ListViewTimesheetApdt(context : Context,items:MutableList<TimesheetItems>)
 
         //for colour:
 
-        val Project = ProjectManager.projectList.find { it.ProjectName == projectName && it.email == userEmail }
+        val Project = ProjectManager.projectList.find { it.projectName == projectName && it.email == userEmail }
         var colour: TextView? = cv?.findViewById(R.id.colourtxt)
 
         val colorResourceId = Project?.let { getColorResourceId(it.projectColor) }

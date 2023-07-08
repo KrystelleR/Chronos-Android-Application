@@ -14,11 +14,18 @@ import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.opsc7311_poe_group20.OwnBadgesObj.ownBadgeslist
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class SignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        val database = Firebase.database
+        val addUsers = database.getReference("Users")
+        val addUserSettings = database.getReference("Users_Settings")
+        val addUserBadges = database.getReference("Users_Badges")
 
         val mintxt = findViewById<TextView>(R.id.mintxt)
         val minSeekBar = findViewById<SeekBar>(R.id.minSeekBar)
@@ -131,7 +138,7 @@ class SignUp : AppCompatActivity() {
                         profilePicture =  defaultAvatarUriString
                     )
 
-                    UserManager.userList.add(newUser)
+                    addUsers.push().setValue(newUser)
 
                     val newUserSettings = UserSettings(
                         ID = 0,
@@ -141,7 +148,7 @@ class SignUp : AppCompatActivity() {
                         IsNotification = true,
                         email = myEmail
                     )
-                    UserSettingsManager.userSettingsList.add(newUserSettings)
+                    addUserSettings.push().setValue(newUserSettings)
 
 
                     val newBadges =OwnBadges(
@@ -152,7 +159,7 @@ class SignUp : AppCompatActivity() {
                         badge5 = false,
                         email = myEmail
                     )
-                    OwnBadgesObj.ownBadgeslist.add(newBadges)
+                    addUserBadges.push().setValue(newBadges)
 
                     val user = UserManager.userList.find { it.email == myEmail }
                     if (user != null) {

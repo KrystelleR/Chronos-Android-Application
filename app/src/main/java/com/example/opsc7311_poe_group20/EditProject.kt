@@ -21,7 +21,7 @@ class EditProject : AppCompatActivity() {
         // Get SharedPreferences instance
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val projectID = sharedPreferences.getInt("projectID", -1)
-        val Project = ProjectManager.projectList.find { it.ProjectID == projectID }
+       val Project = ProjectManager.projectList
 
 
         var priority = findViewById<Spinner>(R.id.prioritySpinner)
@@ -40,8 +40,8 @@ class EditProject : AppCompatActivity() {
             //projectName.text = ProjectManager.projectList[AllProjects.clickedItemPosition].ProjectName
 
             //priority.text = ProjectManager.projectList[AllProjects.clickedItemPosition].ProjectPriority
-            client.text = ProjectManager.projectList[AllProjects.clickedItemPosition].ClientName
-            if(ProjectManager.projectList[AllProjects.clickedItemPosition].IsBillable) {
+            client.text = ProjectManager.projectList[AllProjects.clickedItemPosition].clientName
+            if(ProjectManager.projectList[AllProjects.clickedItemPosition].isBillable) {
                 billable.text = "Yes"
             }
             else{
@@ -52,7 +52,7 @@ class EditProject : AppCompatActivity() {
             }else{
                 rate.text = (ProjectManager.projectList[AllProjects.clickedItemPosition].Rate).toString()
             }*/
-            rate.text = (ProjectManager.projectList[AllProjects.clickedItemPosition].Rate).toString()
+            rate.text = (ProjectManager.projectList[AllProjects.clickedItemPosition].rate).toString()
             min.text = (ProjectManager.projectList[AllProjects.clickedItemPosition].minimum_goal).toString()
             max.text = (ProjectManager.projectList[AllProjects.clickedItemPosition].maximum_goal).toString()
 
@@ -94,7 +94,7 @@ class EditProject : AppCompatActivity() {
             )
             prioritySpinner.adapter = priorityAdapter
 
-            var priorityPicked = ProjectManager.projectList[AllProjects.clickedItemPosition].ProjectPriority
+            var priorityPicked = ProjectManager.projectList[AllProjects.clickedItemPosition].projectPriority
             val selectedPositionPri = priority.indexOf(priorityPicked)
             if (selectedPositionPri != -1) {
                 prioritySpinner.setSelection(selectedPositionPri)
@@ -104,11 +104,11 @@ class EditProject : AppCompatActivity() {
             val btnApplyEditProject = findViewById<Button>(R.id.btnApplyEdit)
             btnApplyEditProject.setOnClickListener {
 
-                projectName.text = "Edit Project: " + (ProjectManager.projectList[AllProjects.clickedItemPosition].ProjectName)
-                ProjectManager.projectList[AllProjects.clickedItemPosition].ClientName=client.text.toString()
-                ProjectManager.projectList[AllProjects.clickedItemPosition].Rate=rate.text.toString().toDouble()
+                projectName.text = "Edit Project: " + (ProjectManager.projectList[AllProjects.clickedItemPosition].projectName)
+                ProjectManager.projectList[AllProjects.clickedItemPosition].clientName=client.text.toString()
+                ProjectManager.projectList[AllProjects.clickedItemPosition].rate=rate.text.toString().toDouble()
                 ProjectManager.projectList[AllProjects.clickedItemPosition].projectColor= colourSpinner.selectedItem.toString()
-                ProjectManager.projectList[AllProjects.clickedItemPosition].ProjectPriority= prioritySpinner.selectedItem.toString()
+                ProjectManager.projectList[AllProjects.clickedItemPosition].projectPriority= prioritySpinner.selectedItem.toString()
                 ProjectManager.projectList[AllProjects.clickedItemPosition].minimum_goal= min.text.toString().toInt()
                 ProjectManager.projectList[AllProjects.clickedItemPosition].maximum_goal=max.text.toString().toInt()
 

@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 var selected: String = ""
@@ -17,6 +19,9 @@ class AddProject: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_project)
+
+        val database = Firebase.database
+        val addProjects = database.getReference("Projects")
 
         val switch = findViewById<Switch>(R.id.billableSwitch)
         val layout = findViewById<LinearLayout>(R.id.myLayout)
@@ -139,12 +144,11 @@ class AddProject: AppCompatActivity() {
                             rateAmount = 0.0
                         }
                         val newProject = Project(
-                            ProjectID = ProjectManager.projectList.size,
-                            ProjectName = projectName,
-                            ProjectPriority = priority,
-                            ClientName = clientName,
-                            IsBillable = billable,
-                            Rate = rateAmount,
+                            projectName = projectName,
+                            projectPriority = priority,
+                            clientName = clientName,
+                            isBillable = billable,
+                            rate = rateAmount,
                             projectColor = colourPicked,
                             maximum_goal = max,
                             minimum_goal = min,
@@ -152,17 +156,14 @@ class AddProject: AppCompatActivity() {
                             totalHours = 0
                         )
 
-                        ProjectManager.projectList.add(newProject)
+                        addProjects.push().setValue(newProject)
 
-                        val Project = ProjectManager.projectList.last()
 
                         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
+                        editor.putInt("projectID", 2)
+                        editor.apply()
 
-                        if (Project != null) {
-                            editor.putInt("projectID", newProject.ProjectID)
-                            editor.apply()
-                        }
 
                         val intent = Intent(this, AllProjects::class.java)
                         startActivity(intent)
@@ -212,7 +213,7 @@ class AddProject: AppCompatActivity() {
     }
 
     private fun isProjectTaken(name: String, email: String): Boolean {
-        val project = ProjectManager.projectList.find { it.ProjectName == name && it.email == email }
+        val project = ProjectManager.projectList.find { it.projectName == name && it.email == email }
         return project != null
     }
 

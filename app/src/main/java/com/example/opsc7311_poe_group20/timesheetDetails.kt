@@ -24,7 +24,7 @@ class timesheetDetails : AppCompatActivity() {
 
         val date = Timesheetobj.timesheetlist[Home.clickedItemPosition].date
         val startTime = Timesheetobj.timesheetlist[Home.clickedItemPosition].startTime
-        val endTime = Timesheetobj.timesheetlist[Home.clickedItemPosition].EndTime
+        val endTime = Timesheetobj.timesheetlist[Home.clickedItemPosition].endTime
 
         val formattedDate = dateFormat.format(date)
         val formattedStartTime = timeFormat.format(startTime)
@@ -55,12 +55,12 @@ class timesheetDetails : AppCompatActivity() {
 
         val description = findViewById<TextView>(R.id.descriptiontxt)
 
-         if(Timesheetobj.timesheetlist[Home.clickedItemPosition].decsrp == ""){
-             description.text = "No Description"
-         }
+        if(Timesheetobj.timesheetlist[Home.clickedItemPosition].decsrp == ""){
+            description.text = "No Description"
+        }
         else{
-             description.text =Timesheetobj.timesheetlist[Home.clickedItemPosition].decsrp
-         }
+            description.text =Timesheetobj.timesheetlist[Home.clickedItemPosition].decsrp
+        }
 
 
         var theImage = findViewById<ImageView>(R.id.projimage)

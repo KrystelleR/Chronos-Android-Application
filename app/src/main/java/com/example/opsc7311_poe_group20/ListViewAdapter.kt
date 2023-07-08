@@ -25,42 +25,22 @@ class ListViewAdapter(context : Context,items:MutableList<Project>) : ArrayAdapt
         this.list=items
     }
 
-
-
     //convertview refers to each row of our listview. Position is the index of the current row
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val cv: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_row, parent, false)
 
+        val rowNum: TextView = cv.findViewById(R.id.rowNumber)
+        rowNum.text = "${position + 1}."
 
-        var cv = convertView
-        if (cv==null){
-            var layoutInflatorObj : LayoutInflater?= context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as? LayoutInflater
+        val rowProject: TextView = cv.findViewById(R.id.rowProjectName)
+        rowProject.text = list[position].projectName
 
-            if (layoutInflatorObj != null) {//I hate nullables. So many checks involved
-                cv=layoutInflatorObj.inflate(R.layout.list_row,null)
+        val projColIcon: TextView = cv.findViewById(R.id.Projcolourtxt)
+        val colorResourceId = getItem(position)?.let { getColorResourceId(it.projectColor) }
+        val shapeDrawable = colorResourceId?.let { createCircularShapeDrawable(it) }
+        projColIcon.background = shapeDrawable
 
-                //make changes to each row (row num, name, image, image )
-                //change row number. Create text view object
-                var rowNum : TextView = cv.findViewById(R.id.rowNumber)
-                rowNum.setText("${position +1}.")
-                //change project name
-                var rowProject: TextView = cv.findViewById(R.id.rowProjectName)
-                rowProject.setText(list[position].ProjectName)
-
-                var projColIcon : TextView = cv.findViewById(R.id.Projcolourtxt)
-                val colorResourceId = list[position]?.let { getColorResourceId(it.projectColor) }
-                val shapeDrawable = colorResourceId?.let { createCircularShapeDrawable(it) }
-                if (projColIcon != null) {
-                    projColIcon.background = shapeDrawable
-                }
-
-
-
-            }
-
-        }
-
-
-        return cv!!
+        return cv
     }
 
     private fun getColorResourceId(colorString: String): Int {

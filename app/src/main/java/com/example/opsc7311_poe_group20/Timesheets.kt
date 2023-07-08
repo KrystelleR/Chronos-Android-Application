@@ -83,7 +83,7 @@ class Timesheets : AppCompatActivity() {
         val filteredProjects = ProjectManager.projectList.filter { it.email == userEmail }
 
         // Extract the project names from the filtered projects
-        val projectNames = filteredProjects.map { it.ProjectName }
+        val projectNames = filteredProjects.map { it.projectName }
 
         // Set up ArrayAdapter to populate the spinner with the project names
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, projectNames)
@@ -130,14 +130,14 @@ class Timesheets : AppCompatActivity() {
 
             if(strTime < endTime){
                 if (userEmail != null) {
-                    var project = ProjectManager.projectList.find { it.ProjectName == selectedItem && it.email == userEmail}
+                    var project = ProjectManager.projectList.find { it.projectName == selectedItem && it.email == userEmail}
                     project?.totalHours = project?.totalHours?.plus(totalMinutes)!!
 
                     val newEntry = TimesheetItems(
                         timesheetID = timesheetlist.size,
                         date = Mdate,
                         startTime = strTime,
-                        EndTime = endTime,
+                        endTime = endTime,
                         duration = totalMinutes,
                         decsrp = descr,
                         images = imageString ,
@@ -150,7 +150,7 @@ class Timesheets : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
-           else{
+            else{
                 Toast.makeText(this, "Start time can not be later than end time" , Toast.LENGTH_SHORT).show()
             }
         }
@@ -228,7 +228,7 @@ class Timesheets : AppCompatActivity() {
             profileImageView.setImageBitmap(bmp)
 
             // Convert the bitmap to a Base64-encoded string
-             imageString = bitmapToBase64String(bmp)
+            imageString = bitmapToBase64String(bmp)
 
             Toast.makeText(this, "Profile successfully changed!", Toast.LENGTH_SHORT).show()
         }
@@ -238,7 +238,7 @@ class Timesheets : AppCompatActivity() {
             profileImageView.setImageURI(selectedImageUri)
 
             // Convert the selected image URI to a Base64-encoded string
-             imageString = uriToBase64String(selectedImageUri)
+            imageString = uriToBase64String(selectedImageUri)
             Toast.makeText(this, "Profile successfully changed!", Toast.LENGTH_SHORT).show()
         }
 

@@ -52,7 +52,7 @@ class calendarAdapter(context: Context, items: MutableList<TimesheetItems>, priv
             val totalDuration = list[position].duration
             val userEmail = list[position].email
             val start = list[position].startTime
-            val end = list[position].EndTime
+            val end = list[position].endTime
 
             val myHours: Int = totalDuration / 60
             val myMinutes: Int = totalDuration % 60
@@ -69,7 +69,7 @@ class calendarAdapter(context: Context, items: MutableList<TimesheetItems>, priv
             //for colour:
 
             val Project =
-                ProjectManager.projectList.find { it.ProjectName == projectName && it.email == userEmail }
+                ProjectManager.projectList.find { it.projectName == projectName && it.email == userEmail }
             var colour: TextView? = cv?.findViewById(R.id.colourtxt)
 
             val colorResourceId = Project?.let { getColorResourceId(it.projectColor) }

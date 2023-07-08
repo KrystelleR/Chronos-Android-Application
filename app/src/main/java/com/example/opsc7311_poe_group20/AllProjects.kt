@@ -5,45 +5,46 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class AllProjects : AppCompatActivity() {
 
 
     lateinit var items : MutableList<Project>
-    lateinit var adptr :ListViewAdapter
+    var adptr: ListViewAdapter? = null
+    lateinit var lvProject: ListView
+
 
     companion object {
 
         var clickedItemPosition: Int = -1
-
-        //lateinit var allProjectsContext: Context
-        /*
-        @JvmStatic
-        fun removeItem(items: MutableList<Project>, adptr: ListViewAdapter, i: Int) {
-            items.removeAt(i)
-            adptr.notifyDataSetChanged()
-        }*/
     }
 
-
+    val database = Firebase.database
+    val getProject = database.getReference("Projects")
+    var projectList = mutableListOf<Project>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_projects)
-
+        lvProject = findViewById<ListView>(R.id.lvMyProjects)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_timesheet -> {
-                    if(ProjectManager.projectList.size == 0){
+                    if (ProjectManager.projectList.size == 0) {
                         // Handle item1 click
                         val intent1 = Intent(this, AddProject::class.java)
                         startActivity(intent1)
-                        Toast.makeText(this, "Add a project first" , Toast.LENGTH_SHORT).show()
-                    }
-                    else{
+                        Toast.makeText(this, "Add a project first", Toast.LENGTH_SHORT).show()
+                    } else {
                         // Handle item1 click
                         val intent1 = Intent(this, Timesheets::class.java)
                         startActivity(intent1)
@@ -65,25 +66,52 @@ class AllProjects : AppCompatActivity() {
                 else -> false
             }
         }
-        //allProjectsContext=this
-
-
         //btn to navigate to next activity
         var btnNewProj = findViewById<Button>(R.id.btnNewProject)
-        btnNewProj.setOnClickListener{
-            val intent = Intent(this,AddProject::class.java)
+        btnNewProj.setOnClickListener {
+            val intent = Intent(this, AddProject::class.java)
             startActivity(intent)
         }
 
-        var lvProject : ListView =findViewById(R.id.lvMyProjects)
-        //set project list to items and pass as param of ListViewAdapter object.
-        items = ProjectManager.projectList
+        //read from database
+        getProject.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // Handle the data change event
+                //iterate over children in the list
+                for (pulledUser in snapshot.children) {
+                    val project: Project? = pulledUser.getValue(Project::class.java)
+                    if (project != null) {
+                        projectList.add(project)
+                        ProjectManager.projectList.add(project)
+                        Log.d("ProjectName", project.projectName)
+                    }
+                }
 
-        //adapter holds data that listview will display. ListViewAdapter is our custom adapter class we made
-        adptr = ListViewAdapter(this, items)
+// Set project list to items and pass as a parameter of ListViewAdapter object.
+                items = projectList
+
+// Adapter holds data that ListView will display. ListViewAdapter is our custom adapter class.
+                adptr = ListViewAdapter(applicationContext, items)
+
+// Set the adapter for the ListView
+                lvProject.adapter = adptr
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle the cancellation event for project retrieval
+                Toast.makeText(this@AllProjects, "Error retrieving projects", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+        lvProject.setOnItemClickListener { parent, view, i, id ->
+            var projName : String = items[i].projectName
+            Toast.makeText(this, projName, Toast.LENGTH_SHORT).show()
+        }
 
 
-
+/*
 
         //click methods. short and long. Position is the index of the item that was clicked
         lvProject.setOnItemClickListener { parent, view, i, id ->
@@ -160,6 +188,6 @@ class AllProjects : AppCompatActivity() {
         return position
     }
 
-
-
+*/
+    }
 }
