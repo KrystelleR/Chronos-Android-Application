@@ -1,5 +1,4 @@
 # Chronos Time Application
-ST10091197, ST10091539, ST10090758 
 Krystelle Rupnarain, Ghislain-Claude Ilunga, Aaron Kyle Padiachy
 
 TAKE NOTE
@@ -7,10 +6,6 @@ TAKE NOTE
 You will require an internet connection to run the application and use the cloud-based database
 
 ------
-LINKS
-------
-Git Repository Link: 
-https://github.com/VCSTDN/prog7311-part2-KrystelleR.git
 
 PURPOSE
 --------
@@ -111,9 +106,7 @@ Release Date 03/07/2023
 </br>
 Author : Krystelle Rupnarain, Ghislain-Claude Ilunga, Aaron Kyle Padiachy
 </br>
-Contact Detail : 
+Contact Details: 
 ST190091197@vcconnect.edu.za (email) 
 ST10091539@vcconnect.edu.za (email)
 ST10090758 @vcconnect.edu.za (email)
-
-for any enquires 
